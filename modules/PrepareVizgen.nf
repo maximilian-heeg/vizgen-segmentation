@@ -22,11 +22,12 @@ process splitCSV {
 }
 
 process assignTranscripts {
-  cpus  2 
-  memory  20.GB  
-  time  2.hour  
+  cpus  { 2 * * task.attempt }
+  memory  { 20.GB  * task.attempt }
+  time  { 2.hour  * task.attempt }
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
   errorStrategy 'retry'
+  maxRetries 3
   input:
     each path('transcripts.csv')
     path 'assign_transcripts.ipynb'
