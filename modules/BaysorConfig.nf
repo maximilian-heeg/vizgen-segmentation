@@ -2,6 +2,11 @@
 
 process getMedianTranscriptsPerCell {
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
+  cpus  { 2 * task.attempt }
+  memory  { 40.GB  * task.attempt }
+  time  { 2.hour  * task.attempt }
+  errorStrategy 'retry'
+  maxRetries 3
   input:
     path 'transcripts.csv'
   output:
