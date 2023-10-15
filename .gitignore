@@ -1,0 +1,8 @@
+.directory
+singularity/
+work/
+data/
+results/
+.nextflow*
+.$*
+Makefile
