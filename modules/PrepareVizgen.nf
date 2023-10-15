@@ -22,7 +22,7 @@ process splitCSV {
 }
 
 process assignTranscripts {
-  cpus  { 2 * * task.attempt }
+  cpus  { 2 * task.attempt }
   memory  { 20.GB  * task.attempt }
   time  { 2.hour  * task.attempt }
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
