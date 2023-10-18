@@ -54,10 +54,10 @@ process dumpParameters {
 process diagnostics {
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
   cpus 8
-  memory { 20.GB * task.attempt }
+  memory { 40.GB * task.attempt }
   time { 4.hour * task.attempt }
   errorStrategy 'retry'
-  maxRetries 3
+  maxRetries 4
   input:
     path 'notebook.ipynb'
     path "data/transcripts.csv"
@@ -75,10 +75,10 @@ process scanpy {
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
   publishDir "$params.outdir", mode: 'copy', overwrite: true,  pattern: '*.h5ad'
   cpus 8
-  memory { 20.GB * task.attempt }
+  memory { 40.GB * task.attempt }
   time { 4.hour * task.attempt }
   errorStrategy 'retry'
-  maxRetries 3
+  maxRetries 4
   input:
     path 'notebook.ipynb'
     path "data/transcripts.csv"
@@ -99,10 +99,10 @@ process scanpy {
 process boundaries {
   container 'docker://maximilianheeg/docker-scanpy:v1.9.5'
   cpus 8
-  memory { 20.GB * task.attempt }
+  memory { 40.GB * task.attempt }
   time { 4.hour * task.attempt }
   errorStrategy 'retry'
-  maxRetries 3
+  maxRetries 4
   input:
     path 'notebook.ipynb'
     path 'data/image.tiff'
